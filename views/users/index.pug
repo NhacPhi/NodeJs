@@ -1,0 +1,14 @@
+form.seach-form(action="/users/search")
+  input(name="name", type="text", placeholder="name")
+  input(type="submit")
+.users
+  table
+    thead
+      tr
+        th  Name 
+        th  Email 
+    tbody
+    each user in users
+      tr
+        td=  user.name 
+        td=  user.email
