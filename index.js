@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express();
 const port = 8080;
+// De su dung post method setting
+app.use(express.json())
+app.use(express.urlencoded({extended:true})) 
 
 app.get('/',function(req,res){
 	//res.send("Hello world");
@@ -28,14 +31,20 @@ app.get('/users/search', (req,res)=>{
 	
 	res.render('users/index', {users:result});
 })
+// Truy cap trang tao new user
 
-app.get('users/create', (req,res) => {
+app.get('/users/create', function(req,res){
 	res.render('users/create')
 })
 
-app.post('users/create',(req,res)=>{
-	// Add new user here
+// Post new user to server
+app.post('/users/create',(req,res) => {
+	// add new user
+	console.log(req.body)
+	users.push(req.body);
+	res.redirect('/users');
 })
+
 app.listen(port,function(){
 	console.log("Your app running on port " + port);
 })
